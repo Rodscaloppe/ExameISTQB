@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Exame ISTQB - Foundation Level (Set A)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .main-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #005a9c;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        h2, h4 {
+             color: #333;
+        }
+        .question-container {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 1px solid #d1d9e6;
+            border-radius: 8px;
+            background-color: #fdfdfd;
+        }
+        .question-number {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 1.2em;
+        }
+        .question-text, .scenario {
+            font-size: 1.1em;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+        .scenario {
+            background-color: #eef;
+            padding: 10px;
+            border-left: 4px solid #005a9c;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .options-form .option {
+            display: block;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .options-form .option:hover {
+            background-color: #e9f4ff;
+        }
+        .options-form input[type="radio"],
+        .options-form input[type="checkbox"] {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .feedback {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .feedback-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .feedback p {
+            margin: 8px 0;
+        }
+        .feedback strong {
+             color: #004085;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <h1>Exemplo de Exame ISTQB® Foundation Level</h1>
+    <h2>Perguntas e Respostas Comentadas (Set A)</h2>
+    <p>Selecione uma resposta para cada pergunta e clique em "Corrigir" para ver o resultado e a justificativa.</p>
+
+    <div id="exam-container">
+        <!-- O JavaScript irá inserir as perguntas aqui. Se vir apenas o texto acima, o script não executou. -->
+    </div>
+</div>
+
+<script>
+// Bloco de script que gera as perguntas dinamicamente.
+document.addEventListener('DOMContentLoaded', () => {
+    const examData = [
+        {
+        id: 1,
+        question: "Quais das seguintes afirmações descrevem um objetivo de teste válido?",
+        options: [
+            { id: 'A', text: 'Para provar que não há defeitos não corrigidos no sistema em teste.' },
+            { id: 'B', text: 'Para provar que não haverá falhas após a implementação do sistema na produção.' },
+            { id: 'C', text: 'Reduzir o nível de risco do objeto de teste e aumentar a confiança no nível de qualidade.' },
+            { id: 'D', text: 'Para verificar se não há combinações não testadas de entradas.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> É impossível provar que não há mais defeitos no sistema em teste. Veja o princípio de teste 1 (Teste demonstra a presença de defeitos, não a sua ausência).<br><strong>B) INCORRETO.</strong> Não se pode provar a ausência de futuras falhas (consulte o princípio de teste 7 - Falácia da ausência de erros).<br><strong>C) CORRETO.</strong> O teste encontra defeitos e falhas que reduzem o nível de risco e, ao mesmo tempo, dão mais confiança no nível de qualidade do objeto de teste. Este é um dos objetivos primários do teste.<br><strong>D) INCORRETO.</strong> É impossível testar todas as combinações de entradas (consulte o princípio de teste 2 - Teste exaustivo é impossível)."
+        }
+    },
+    {
+        id: 2,
+        question: "Qual das opções a seguir mostra um exemplo que contribui para o sucesso das atividades de teste?",
+        options: [
+            { id: 'A', text: 'O envolvimento dos testadores durante várias atividades do ciclo de vida de desenvolvimento de software (SDLC) ajudará a detectar defeitos nos produtos de trabalho.' },
+            { id: 'B', text: 'Os testadores tentam não perturbar os desenvolvedores durante a codificação, para que eles escrevam um código melhor.' },
+            { id: 'C', text: 'Os testadores que colaboram com os usuários finais ajudam a melhorar a qualidade dos relatórios de defeitos durante a integração de componentes e o teste do sistema.' },
+            { id: 'D', text: 'Os testadores certificados modelarão casos de teste muito melhores do que os testadores não certificados.' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> É importante que os testadores estejam envolvidos desde o início do ciclo de vida de desenvolvimento de software (SDLC). Isso aumentará a compreensão das decisões de modelagem e detectará defeitos antecipadamente (Princípio: Teste cedo).<br><strong>B) INCORRETO.</strong> A colaboração entre testadores e desenvolvedores é benéfica, pois ambos terão mais compreensão dos produtos de trabalho uns dos outros.<br><strong>C) INCORRETO.</strong> Colaborar com os usuários finais é importante, mas a colaboração com os projetistas de sistemas também é crucial para ter uma visão completa de como testar.<br><strong>D) INCORRETO.</strong> A certificação é útil, mas o sucesso do teste não depende apenas dela. A conformidade com requisitos legais, por exemplo, também é um fator crítico para o sucesso."
+        }
+    },
+    {
+        id: 3,
+        question: "Você foi designado como testador de uma equipe que está produzindo um novo sistema de forma incremental. Você notou que nenhuma alteração foi feita nos casos de teste de regressão existentes durante várias iterações e nenhum novo defeito de regressão foi identificado. Seu gerente está feliz, mas você não está. Qual princípio de teste explica seu ceticismo?",
+        options: [
+            { id: 'A', text: 'Os testes se desgastam.' },
+            { id: 'B', text: 'Falácia da ausência de erros.' },
+            { id: 'C', text: 'Os defeitos se agrupam.' },
+            { id: 'D', text: 'É impossível realizar testes exaustivos.' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> Esse princípio (conhecido como 'paradoxo do pesticida') significa que, se os mesmos testes forem repetidos várias vezes, eventualmente esses testes não encontrarão mais nenhum defeito novo. É por isso que o testador está cético.<br><strong>B) INCORRETO.</strong> Esse princípio diz respeito à crença errônea de que um software sem defeitos encontrados é um sucesso, mesmo que não atenda às necessidades do usuário.<br><strong>C) INCORRETO.</strong> Esse princípio diz que um pequeno número de componentes geralmente contém a maioria dos defeitos. Não se aplica diretamente a este cenário.<br><strong>D) INCORRETO.</strong> Esse princípio afirma que testar todas as combinações de entradas e condições prévias não é viável, o que não é o foco do problema aqui."
+        }
+    },
+    {
+        id: 4,
+        question: "Você trabalha em uma equipe que desenvolve um aplicativo móvel para pedidos de comida. Na iteração atual, a equipe decidiu implementar a funcionalidade de pagamento. Qual das atividades a seguir faz parte da análise de teste?",
+        options: [
+            { id: 'A', text: 'Estimativa de que o teste da integração com o serviço de pagamento levará 8 dias/homem.' },
+            { id: 'B', text: 'Decidir que a equipe deve testar se é possível realizar o pagamento entre muitos usuários.' },
+            { id: 'C', text: 'Usar a análise de valor limite (BVA) para derivar os dados de teste para os casos de teste que verificam o processamento correto do pagamento para o valor mínimo permitido a ser pago.' },
+            { id: 'D', text: 'Analisar a discrepância entre o resultado real e o resultado esperado após a execução de um caso de teste que verifica o processo de pagamento com cartão de crédito e relatar um defeito.' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> A estimativa do esforço de teste faz parte do <strong>planejamento</strong> do teste.<br><strong>B) CORRETO.</strong> Este é um exemplo de definição de condições de teste (o 'quê' testar), o que é a atividade central da <strong>análise</strong> de teste.<br><strong>C) INCORRETO.</strong> O uso de técnicas de teste (BVA) para derivar itens de cobertura e dados de teste faz parte do <strong>projeto</strong> do teste.<br><strong>D) INCORRETO.</strong> A comunicação dos defeitos encontrados durante o teste dinâmico faz parte da <strong>execução</strong> do teste."
+        }
+    },
+    {
+        id: 5,
+        question: "Quais dos seguintes fatores (i-v) têm influência SIGNIFICATIVA no processo de teste?<br>i. O SDLC;<br>ii. O número de defeitos detectados em projetos anteriores;<br>iii. Os riscos identificados do produto;<br>iv. Novos requisitos regulatórios forçando;<br>v. O número de testadores certificados na organização;",
+        options: [
+            { id: 'A', text: 'i, ii têm influência significativa; iii, iv, v não têm.' },
+            { id: 'B', text: 'i, iii, iv têm influência significativa; ii, v não têm.' },
+            { id: 'C', text: 'ii, iv, v têm influência significativa; i, iii não têm.' },
+            { id: 'D', text: 'iii, v têm influência significativa; i, ii, iv não têm.' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>i. VERDADEIRO.</strong> O SDLC tem influência sobre o processo de teste.<br><strong>ii. FALSO.</strong> O número de defeitos detectados em projetos anteriores pode ter alguma influência, mas não é tão significativo quanto i, iii e iv.<br><strong>iii. VERDADEIRO.</strong> Os riscos identificados do produto são um dos fatores mais importantes que influenciam o processo de teste.<br><strong>iv. VERDADEIRO.</strong> Os requisitos regulamentares são fatores importantes que influenciam o processo de teste.<br><strong>v. FALSO.</strong> O número de certificados não tem influência significativa no processo de teste."
+        }
+    },
+    {
+        id: 6,
+        question: "Quais das DUAS tarefas a seguir pertencem PRINCIPALMENTE a um papel no teste?",
+        options: [
+            { id: 'A', text: 'Configurar ambientes de teste.' },
+            { id: 'B', text: 'Manter o backlog do produto.' },
+            { id: 'C', text: 'Projetar soluções para novos requisitos.' },
+            { id: 'D', text: 'Criar o plano de teste.' },
+            { id: 'E', text: 'Relatório sobre a cobertura alcançada.' }
+        ],
+        correctAnswer: ['D', 'E'],
+        type: 'checkbox',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> Embora o testador valide o ambiente, a configuração geralmente é feita por administradores de sistema ou DevOps.<br><strong>B) INCORRETO.</strong> O backlog do produto é criado e mantido pelo Product Owner.<br><strong>C) INCORRETO.</strong> Isso é feito pela equipe de desenvolvimento.<br><strong>D) CORRETO.</strong> A criação do plano de teste é uma tarefa essencial de um testador ou gerente de testes.<br><strong>E) CORRETO.</strong> Relatar o progresso, incluindo cobertura, é uma atividade central do controle de testes, feita pelos testadores."
+        }
+    },
+    {
+        id: 7,
+        question: "Quais das seguintes habilidades (i-v) são as MAIS importantes para um testador?<br>i. Ter conhecimento do domínio;<br>ii. Criação de uma visão do produto;<br>iii. Ser um bom membro da equipe;<br>iv. Planejar e organizar o trabalho da equipe;<br>v. Pensamento crítico;",
+        options: [
+            { id: 'A', text: 'ii e iv são importantes; i, iii e v não são' },
+            { id: 'B', text: 'i, iii e v são importantes; ii e iv não são' },
+            { id: 'C', text: 'i, ii e v são importantes; iii e iv não são' },
+            { id: 'D', text: 'iii e iv são importantes; i, ii e v não são' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral":"<strong>i. VERDADEIRO.</strong> Ter conhecimento do domínio é uma habilidade importante do testador.<br><strong>ii. FALSO.</strong> Essa é uma tarefa do analista de negócios ou Product Owner.<br><strong>iii. VERDADEIRO.</strong> Ser um bom jogador de equipe é uma habilidade importante.<br><strong>iv. FALSO.</strong> Planejar e organizar o trabalho da equipe é uma tarefa do gerente de testes ou, em Agile, de toda a equipe.<br><strong>v. VERDADEIRO.</strong> O pensamento crítico é uma das habilidades mais importantes dos testadores."
+        }
+    },
+    {
+        id: 8,
+        question: "Como a abordagem de equipe inteira está presente nas interações entre os testadores e os representantes da empresa?",
+        options: [
+            { id: 'A', text: 'Os representantes do negócio decidem sobre as abordagens de automação de testes.' },
+            { id: 'B', text: 'Os testadores ajudam os representantes da empresa a definir a estratégia de teste.' },
+            { id: 'C', text: 'Os representantes de negócio não participam da abordagem de equipe inteira.' },
+            { id: 'D', text: 'Os testadores ajudam os representantes de negócio a criar testes de aceite adequados.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> A automação é uma decisão técnica, definida por testadores e desenvolvedores.<br><strong>B) INCORRETO.</strong> A estratégia de teste é decidida com desenvolvedores, não representantes de negócio.<br><strong>C) INCORRETO.</strong> Na abordagem de equipe inteira, todos, incluindo representantes de negócio, fazem parte e colaboram.<br><strong>D) CORRETO.</strong> Os testadores trabalharão em estreita colaboração com os representantes do negócio para garantir que os níveis de qualidade desejados sejam alcançados. Isso inclui apoiar e colaborar com eles para ajudá-los a criar testes de aceite adequados."
+        }
+    },
+    {
+        id: 9,
+        question: "Considere a seguinte regra: \"para cada atividade do SDLC, há uma atividade de teste correspondente\". Em quais modelos de SDLC essa regra é válida?",
+        options: [
+            { id: 'A', text: 'Somente em modelos sequenciais.' },
+            { id: 'B', text: 'Somente em modelos iterativos.' },
+            { id: 'C', text: 'Somente em modelos iterativos e incrementais.' },
+            { id: 'D', text: 'Em modelos de sequenciais, incrementais e iterativos.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>D) CORRETO.</strong> Essa regra é válida para todos os modelos de SDLC. Embora mais explícita em modelos sequenciais (como o Modelo V), ela também se aplica a modelos iterativos e incrementais (onde atividades de desenvolvimento e teste ocorrem repetidamente em ciclos)."
+        }
+    },
+    {
+        id: 10,
+        question: "Qual das seguintes afirmações descreve MELHOR a abordagem de desenvolvimento orientado por testes de aceite (ATDD)?",
+        options: [
+            { id: 'A', text: 'No ATDD, os critérios de aceite geralmente são criados com base no formato dado/quando/então.' },
+            { id: 'B', text: 'No ATDD, os casos de teste são criados principalmente no teste de componentes e são orientados para o código.' },
+            { id: 'C', text: 'No ATDD, os testes são criados com base em critérios de aceite para orientar o desenvolvimento do software.' },
+            { id: 'D', text: 'No ATDD, os testes são baseados no comportamento desejado do software, o que facilita a compreensão dos membros da equipe.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> O formato dado/quando/então é mais específico do BDD (Behavior-Driven Development).<br><strong>B) INCORRETO.</strong> Isso descreve o desenvolvimento orientado por testes (TDD), que é focado em componentes e código.<br><strong>C) CORRETO.</strong> No ATDD, os testes são escritos a partir de critérios de aceite (perspectiva do cliente/usuário) e servem como guia para o que os desenvolvedores devem implementar.<br><strong>D) INCORRETO.</strong> Esta é uma descrição mais relacionada ao BDD, que é uma forma de ATDD, mas C é a melhor descrição geral da abordagem."
+        }
+    },
+    {
+        id: 11,
+        question: "Qual das opções a seguir NÃO é um exemplo da abordagem shift-left?",
+        options: [
+            { id: 'A', text: 'Revisar os requisitos do usuário antes que eles sejam formalmente aceitos pelos stakeholders.' },
+            { id: 'B', text: 'Escrever um teste de componente antes que o código correspondente seja escrito.' },
+            { id: 'C', text: 'Execução de um teste de eficiência de performance para um componente durante o teste do componente.' },
+            { id: 'D', text: 'Escrever um script de teste antes de definir o processo de gerenciamento de configuração.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO (É um exemplo).</strong> A revisão antecipada de requisitos é um exemplo clássico de shift-left.<br><strong>B) INCORRETO (É um exemplo).</strong> O TDD é um exemplo de shift-left.<br><strong>C) INCORRETO (É um exemplo).</strong> Teste não funcional antecipado (em um nível inferior) é um exemplo de shift-left.<br><strong>D) CORRETO (NÃO é um exemplo).</strong> Os scripts de teste devem estar sujeitos ao gerenciamento de configuração. Criar scripts de teste antes de ter um processo de GC definido viola as boas práticas e não é um exemplo de shift-left."
+        }
+    },
+    {
+        id: 12,
+        question: "Qual dos argumentos abaixo você usaria para convencer seu gerente a organizar retrospectivas no final de cada ciclo de lançamento?",
+        options: [
+            { id: 'A', text: 'As retrospectivas são muito populares hoje em dia e os clientes gostariam que as adicionássemos aos nossos processos.' },
+            { id: 'B', text: 'A organização de retrospectivas economizará dinheiro, pois os representantes dos usuários finais não fornecem feedback imediato sobre o produto.' },
+            { id: 'C', text: 'Os pontos fracos do processo, identificados durante a retrospectiva, podem ser analisados e servir como uma lista de tarefas para o programa de melhoria contínua do processo da organização.' },
+            { id: 'D', text: 'As retrospectivas adotam cinco valores, incluindo coragem e respeito, que são cruciais para manter o aprimoramento contínuo na organização.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> Popularidade não é um argumento de negócio sólido.<br><strong>B) INCORRETO.</strong> A premissa está incorreta; o objetivo da retrospectiva é melhorar o processo interno da equipe.<br><strong>C) CORRETO.</strong> Este é o principal valor de negócio das retrospectivas. Elas são essenciais para a melhoria contínua do processo de desenvolvimento e teste.<br><strong>D) INCORRETO.</strong> Coragem e respeito são valores do Extreme Programming, não especificamente das retrospectivas."
+        }
+    },
+    {
+        id: 13,
+        question: "Quais tipos de falhas (1-4) se encaixam melhor em quais níveis de teste (A-D)?<br>(1) Falhas no comportamento do sistema que desviam das necessidades de negócio do usuário.<br>(2) Falhas na comunicação entre os componentes.<br>(3) Falhas na lógica em um módulo.<br>(4) Falhas nas regras de negócios não implementadas corretamente.<br>(A) Teste de componentes<br>(B) Teste de integração de componentes<br>(C) Teste de sistema<br>(D) Teste de aceite",
+        options: [
+            { id: 'A', text: '1D, 2B, 3A, 4C' },
+            { id: 'B', text: '1D, 2B, 3C, 4A' },
+            { id: 'C', text: '1B, 2A, 3D, 4C' },
+            { id: 'D', text: '1C, 2B, 3A, 4D' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong><br> - (1) Necessidades do negócio do usuário são validadas no Teste de Aceite (D).<br> - (2) Comunicação entre componentes é o foco do Teste de Integração de Componentes (B).<br> - (3) Lógica dentro de um módulo (unidade) é o foco do Teste de Componentes (A).<br> - (4) Regras de negócios são validadas no Teste de Sistema (C).<br>Portanto, a combinação correta é 1D, 2B, 3A, 4C."
+        }
+    },
+    {
+        id: 14,
+        question: "Você está testando uma história de usuário com três critérios de aceite (AC1, AC2, AC3) cobertos por TC1, TC2 e TC3. Veja o histórico de execuções:<br><table><tr><th></th><th>Execução 1</th><th>Execução 2</th><th>Execução 3</th></tr><tr><td>TC1</td><td>(1) Falhou</td><td>(4) Aprovado</td><td>(7) Aprovado</td></tr><tr><td>TC2</td><td>(2) Aprovado</td><td>(5) Falhou</td><td>(8) Aprovado</td></tr><tr><td>TC3</td><td>(3) Falhou</td><td>(6) Falhou</td><td>(9) Aprovado</td></tr></table> Os testes são repetidos após correções. Quais dos testes acima são executados como testes de regressão?",
+        options: [
+            { id: 'A', text: '4, 7, 8, 9' },
+            { id: 'B', text: '5, 7' },
+            { id: 'C', text: '4, 6, 8, 9' },
+            { id: 'D', text: '5, 6' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>B) CORRETO.</strong> Testes de regressão verificam se uma correção não quebrou algo que funcionava antes.<br>- A execução (5) do TC2 é um teste de regressão, pois TC2 passou na execução (2) e falhou aqui, indicando que uma mudança quebrou a funcionalidade.<br>- A execução (7) do TC1 é um teste de regressão, pois TC1 passou na execução (4) e está sendo executado novamente para garantir que as correções feitas para TC2 e TC3 não o quebraram.<br>Os outros (4, 6, 8, 9) são testes de confirmação (re-testes) para verificar se uma falha foi corrigida."
+        }
+    },
+    {
+        id: 15,
+        question: "Qual das opções a seguir NÃO é um benefício dos testes estáticos?",
+        options: [
+            { id: 'A', text: 'Ter um gerenciamento de defeitos menos dispendioso devido à facilidade de detectar defeitos mais tarde no processo SDLC.' },
+            { id: 'B', text: 'A correção de defeitos encontrados durante o teste estático geralmente é muito mais barata do que a correção de defeitos encontrados durante o teste dinâmico.' },
+            { id: 'C', text: 'Encontrar defeitos de codificação que poderiam não ter sido encontrados apenas com a realização de testes dinâmicos.' },
+            { id: 'D', text: 'Detecção de lacunas e inconsistências nos requisitos.' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO (NÃO é um benefício).</strong> O gerenciamento de defeitos é mais caro quando os defeitos são detectados mais tarde. Portanto, a afirmação está incorreta e é a resposta certa para a pergunta 'Qual NÃO é um benefício?'.<br><strong>B) INCORRETO (É um benefício).</strong> É um benefício do teste estático que a correção seja mais barata.<br><strong>C) INCORRETO (É um benefício).</strong> Testes estáticos podem encontrar defeitos que os testes dinâmicos não encontram.<br><strong>D) INCORRETO (É um benefício).</strong> Detectar problemas de requisitos cedo é um dos maiores benefícios do teste estático."
+        }
+    },
+    {
+        id: 16,
+        question: "Qual dos seguintes é um benefício do feedback antecipado e frequente?",
+        options: [
+            { id: 'A', text: 'Melhora o processo de teste para projetos futuros.' },
+            { id: 'B', text: 'Ele força os clientes a priorizarem seus requisitos com base nos riscos acordados.' },
+            { id: 'C', text: 'Essa é a única maneira de medir a qualidade das mudanças.' },
+            { id: 'D', text: 'Isso ajuda a evitar mal-entendidos sobre os requisitos.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> Feedback tardio (lições aprendidas) melhora projetos futuros; feedback antecipado melhora o projeto <strong>atual</strong>.<br><strong>B) INCORRETO.</strong> A priorização de requisitos é feita pelo cliente/PO, não é um resultado direto do feedback.<br><strong>C) INCORRETO.</strong> Existem várias outras maneiras de medir a qualidade.<br><strong>D) CORRETO.</strong> O feedback precoce e frequente permite a comunicação antecipada de possíveis problemas e mal-entendidos sobre requisitos, permitindo correções mais cedo e com menor custo."
+        }
+    },
+    {
+        id: 17,
+        question: "As revisões em sua organização têm os seguintes atributos:<ul><li>Há o papel de um redator.</li><li>O principal objetivo é avaliar a qualidade.</li><li>A reunião é conduzida pelo autor.</li><li>Há uma preparação individual.</li><li>É produzido um relatório de revisão.</li></ul>Qual tipo de revisão é MAIS provável que esteja sendo usado?",
+        options: [
+            { id: 'A', text: 'Revisão informal.' },
+            { id: 'B', text: 'Walkthrough.' },
+            { id: 'C', text: 'Revisão técnica.' },
+            { id: 'D', text: 'Inspeção.' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>B) CORRETO.</strong> Um <strong>Walkthrough</strong> tem os seguintes atributos que combinam com o cenário: presença de um redator, preparação individual, produção de um relatório, objetivo de avaliar a qualidade e a característica principal de que a reunião é conduzida pelo autor do documento. Numa Inspeção, a reunião é liderada por um moderador treinado, não pelo autor."
+        }
+    },
+    {
+        id: 18,
+        question: "Qual dessas afirmações NÃO é um fator que contribui para revisões bem-sucedidas?",
+        options: [
+            { id: 'A', text: 'Os participantes devem dedicar tempo suficiente para a análise.' },
+            { id: 'B', text: 'Dividir grandes produtos de trabalho em pequenas partes para tornar o esforço necessário menos intenso.' },
+            { id: 'C', text: 'Os participantes devem evitar comportamentos que possam indicar tédio, exasperação ou hostilidade com outros participantes.' },
+            { id: 'D', text: 'As falhas encontradas devem ser reconhecidas, apreciadas e tratadas de forma objetiva.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO (É um fator de sucesso).</strong> Tempo adequado para preparação individual é crucial.<br><strong>B) INCORRETO (É um fator de sucesso).</strong> Revisar produtos de trabalho menores torna o processo mais eficaz.<br><strong>C) INCORRETO (É um fator de sucesso).</strong> Um ambiente de confiança é um fator humano chave.<br><strong>D) CORRETO (NÃO é um fator de sucesso).</strong> Esta afirmação descreve uma <strong>falha</strong> ou um <strong>defeito</strong>. Os fatores de sucesso dizem respeito ao <strong>processo</strong> de revisão em si (como as pessoas se comportam, como a revisão é organizada), não ao resultado (os defeitos encontrados)."
+        }
+    },
+    {
+        id: 19,
+        question: "Qual das seguintes é uma característica das técnicas de teste baseadas em experiência?",
+        options: [
+            { id: 'A', text: 'Os casos de teste são criados com base em informações detalhadas do projeto.' },
+            { id: 'B', text: 'Os itens testados na seção de código da interface são usados para medir a cobertura.' },
+            { id: 'C', text: 'As técnicas dependem muito do conhecimento do testador sobre o software e o domínio do negócio.' },
+            { id: 'D', text: 'Os casos de teste são usados para identificar desvios dos requisitos.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> Isto é mais característico de testes baseados em especificação (caixa-preta).<br><strong>B) INCORRETO.</strong> Medir cobertura de código é característico do teste caixa-branca.<br><strong>C) CORRETO.</strong> Técnicas baseadas na experiência, como testes exploratórios e suposição de erros, dependem fundamentalmente do conhecimento, intuição e experiência prévia do testador.<br><strong>D) INCORRETO.</strong> Identificar desvios dos requisitos é o foco das técnicas caixa-preta baseadas em especificação."
+        }
+    },
+    {
+        id: 20,
+        question: "Você está testando um formulário de busca de apartamento:<br>• <b>Andar</b> (térreo, primeiro, segundo)<br>• <b>Jardim</b> (sem, pequeno, grande)<br>Apenas apartamentos no andar térreo podem ter jardins (validação impede combinações inválidas). Qual o número MÍNIMO de casos de teste para 100% de cobertura de Particionamento de Equivalência (EP)?",
+        options: [
+            { id: 'A', text: '3' },
+            { id: 'B', text: '4' },
+            { id: 'C', text: '5' },
+            { id: 'D', text: '6' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>B) CORRETO.</strong> Temos 3 partições para 'andar' {térreo, primeiro, segundo} e 3 para 'jardim' {nenhum, pequeno, grande}.<br>A regra diz que só o 'térreo' pode ter 'pequeno' ou 'grande'. Precisamos cobrir todas as partições:<br> - TC1: térreo, jardim pequeno (cobre 'térreo' e 'pequeno')<br> - TC2: térreo, jardim grande (cobre 'grande')<br> - TC3: primeiro andar, sem jardim (cobre 'primeiro' e 'sem jardim')<br> - TC4: segundo andar, sem jardim (cobre 'segundo')<br>O mínimo de casos de teste é 4."
+        }
+    },
+    {
+        id: 21,
+        question: "Qual a cobertura da Análise de Valor Limite (BVA) de 2 valores para os casos de teste existentes?<br><table><tr><th>Pontos</th><td>0-50</td><td>51-60</td><td>61-70</td><td>71-80</td><td>81-90</td><td>91-100</td></tr><tr><th>Nota</th><td>Reprovado</td><td>Razoável</td><td>Satisfatório</td><td>Bom</td><td>Muito Bom</td><td>Excelente</td></tr></table><b>Casos de teste:</b> TC1(91), TC2(50), TC3(81), TC4(60), TC5(70), TC6(80)",
+        options: [
+            { id: 'A', text: '50%' },
+            { id: 'B', text: '60%' },
+            { id: 'C', text: '33.3%' },
+            { id: 'D', text: '100%' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> As fronteiras são: 50/51, 60/61, 70/71, 80/81, 90/91. Os valores de limite (2-value BVA) são 50, 51, 60, 61, 70, 71, 80, 81, 90, 91 (um total de 10 limites únicos, ou 12 se contar limites externos como 0 e 100, mas o syllabus foca nas internas). <br>Os casos de teste existentes cobrem: 91, 50, 81, 60, 70, 80.<br>Os valores de limite cobertos são: 50, 60, 70, 80, 81, 91. Isso totaliza 6 valores dos 12 possíveis. Portanto, a cobertura é 6/12 = 50%."
+        }
+    },
+    {
+        id: 22,
+        question: "Regras de aluguel de bicicleta: 1) Membros têm 20% de desconto. 2) Desconto não se aplica com prazo perdido. 3) Após 15 aluguéis, membros ganham camiseta. Na tabela de decisão, qual regra descreve uma situação IMPOSSÍVEL?<br><table>... (tabela como na imagem) ...</table>",
+        options: [
+            { id: 'A', text: 'R4' },
+            { id: 'B', text: 'R2' },
+            { id: 'C', text: 'R6' },
+            { id: 'D', text: 'R8' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>D) CORRETO.</strong> A regra 3 especifica que <strong>membros</strong> ganham uma camiseta após 15 aluguéis. A Regra R8 na tabela descreve um <strong>não-membro</strong> (F na linha 'Ser um membro') recebendo uma camiseta (ação 'Camiseta de presente'). Isso contradiz a regra 3, tornando R8 uma situação impossível com base na descrição fornecida."
+        }
+    },
+    {
+        id: 23,
+        question: "Dado um diagrama de transição de estado que começa em INIT e termina em OFF, passando por DEBUG, IN_OPERATION e ON_HOLD. Qual o número MÍNIMO de casos de teste para cobertura de transição?",
+        options: [
+            { id: 'A', text: '4' },
+            { id: 'B', text: '2' },
+            { id: 'C', text: '7' },
+            { id: 'D', text: '3' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral":"<strong>D) CORRETO.</strong> Para cobrir todas as transições do diagrama (assumindo transições como INIT->DEBUG, DEBUG->OFF, DEBUG->IN_OP, IN_OP->ON_HOLD->IN_OP, IN_OP->OFF), normalmente são necessários vários caminhos. O exemplo do Syllabus mostra que 3 testes são suficientes para cobrir todas as transições: <br>- TC1: test, done<br>- TC2: test, run, error, done<br>- TC3: test, run, pause, resume, done.<br>O mínimo de testes para cobrir todas as setas (transições) é 3."
+        }
+    },
+    {
+        id: 24,
+        question: "Seu conjunto de testes atingiu 100% de cobertura de instrução. Qual é a consequência desse fato?",
+        options: [
+            { id: 'A', text: 'Cada instrução no código que contém um defeito foi executada pelo menos uma vez.' },
+            { id: 'B', text: 'Qualquer conjunto de testes com mais casos de teste também alcançará 100% de cobertura.' },
+            { id: 'C', text: 'Cada caminho no código foi executado pelo menos uma vez.' },
+            { id: 'D', text: 'Cada combinação de valores de entrada foi testada pelo menos uma vez.' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> 100% de cobertura de instrução significa que cada linha de código executável foi executada. Se um defeito estiver em uma dessas linhas, a linha foi executada. Isso não garante que o defeito se manifestou como uma falha, mas a linha de código foi percorrida.<br><strong>B) INCORRETO.</strong> Mais casos de teste não garantem mais cobertura; eles podem exercitar as mesmas instruções.<br><strong>C) INCORRETO.</strong> Cobertura de instrução é mais fraca que cobertura de caminho.<br><strong>D) INCORRETO.</strong> Isso descreve teste exaustivo, que é impossível."
+        }
+    },
+    {
+        id: 25,
+        question: "Qual das opções a seguir NÃO é verdadeira para testes caixa-branca?",
+        options: [
+            { id: 'A', text: 'A implementação do software é considerada.' },
+            { id: 'B', text: 'As métricas de cobertura podem ajudar a identificar testes adicionais.' },
+            { id: 'C', text: 'As técnicas podem ser usadas em testes estáticos.' },
+            { id: 'D', text: 'Pode ajudar a identificar lacunas na implementação dos requisitos.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO (É verdadeiro).</strong> Teste caixa-branca considera a estrutura interna.<br><strong>B) INCORRETO (É verdadeiro).</strong> Métricas de cobertura são um pilar do teste caixa-branca.<br><strong>C) INCORRETO (É verdadeiro).</strong> Análise estática de código é uma forma de teste caixa-branca.<br><strong>D) CORRETO (NÃO é verdadeiro).</strong> O ponto fraco do teste caixa-branca é que ele não consegue encontrar funcionalidade <strong>ausente</strong> (lacunas nos requisitos), pois se baseia no código que já existe."
+        }
+    },
+    {
+        id: 26,
+        question: "Qual das opções a seguir descreve MELHOR o conceito por trás da suposição de erros?",
+        options: [
+            { id: 'A', text: 'Uso de conhecimento e experiência de defeitos passados e erros típicos de desenvolvedores.' },
+            { id: 'B', text: 'Uso de sua experiência pessoal de desenvolvimento e os erros que você cometeu.' },
+            { id: 'C', text: 'Imaginar-se como o usuário e adivinhar os erros que ele cometeria.' },
+            { id: 'D', text: 'Duplicar a tarefa de desenvolvimento para identificar os tipos de erros.' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> O conceito básico por trás da suposição de erros é que o testador usa sua experiência, conhecimento do domínio e de erros comuns (seus e de outros) para 'adivinhar' onde os defeitos podem estar e projetar testes para encontrá-los.<br><strong>B) INCORRETO.</strong> É mais amplo do que apenas a própria experiência de desenvolvimento.<br><strong>C) INCORRETO.</strong> Isto é mais relacionado a testes de usabilidade.<br><strong>D) INCORRETO.</strong> Não é prático nem é o conceito da técnica."
+        }
+    },
+    {
+        id: 27,
+        question: "Seu projeto está atrasado, a execução de teste começou tarde e os requisitos não estão completos, mas você tem ótimo conhecimento do domínio. A gerência pede resultados. Qual técnica de teste se encaixa MELHOR?",
+        options: [
+            { id: 'A', text: 'Testes baseados em listas de verificação.' },
+            { id: 'B', text: 'Suposição de erros.' },
+            { id: 'C', text: 'Testes exploratórios.' },
+            { id: 'D', text: 'Teste de ramificação.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>C) CORRETO.</strong> Testes exploratórios são ideais quando a documentação é escassa ou o tempo é limitado. A técnica aproveita o conhecimento, a habilidade e a intuição do testador para projetar e executar testes simultaneamente, sendo muito eficaz neste cenário."
+        }
+    },
+    {
+        id: 28,
+        question: "Qual das opções a seguir descreve MELHOR a maneira como os critérios de aceite podem ser documentados?",
+        options: [
+            { id: 'A', text: 'Realizar retrospectivas para determinar as necessidades reais dos stakeholders.' },
+            { id: 'B', text: 'Usar o formato dado/quando/então para descrever um exemplo de condição de teste.' },
+            { id: 'C', text: 'Usar a comunicação verbal para reduzir o risco de mal-entendido.' },
+            { id: 'D', text: 'Documentar os riscos relacionados a uma história de usuário no plano de teste.' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>B) CORRETO.</strong> O formato Given/When/Then (Dado/Quando/Então) é uma maneira padrão em abordagens ágeis (como BDD) de documentar critérios de aceite como exemplos executáveis e concretos que definem o comportamento esperado."
+        }
+    },
+    {
+        id: 29,
+        question: "História de usuário: “Como editor, quero revisar o conteúdo...”. Um dos critérios de aceite é poder salvar as alterações. Qual é o MELHOR exemplo de um teste ATDD para essa história?",
+        options: [
+            { id: 'A', text: 'Testar se o editor pode salvar o documento após excluir o conteúdo da página.' },
+            { id: 'B', text: 'Testar se o proprietário do conteúdo pode fazer login e fazer atualizações.' },
+            { id: 'C', text: 'Testar se o editor pode programar o conteúdo editado para publicação.' },
+            { id: 'D', text: 'Testar se o editor pode reatribuir a outro editor para fazer atualizações.' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> ATDD (Desenvolvimento Orientado por Testes de Aceite) usa exemplos concretos para definir os critérios de aceite. Este teste valida diretamente duas funcionalidades listadas: editar (excluir é uma forma de edição) e salvar. É um teste específico e relevante para o papel do 'Editor'.<br><strong>B) INCORRETO.</strong> A história é sobre o papel 'Editor', não o 'proprietário'.<br><strong>C) e D) INCORRETO.</strong> Estas ações não foram listadas como critérios de aceite na descrição da pergunta."
+        }
+    },
+    {
+        id: 30,
+        question: "Como os testadores agregam valor aos planejamentos de iteração e lançamento?",
+        options: [
+            { id: 'A', text: 'Os testadores determinam a prioridade das histórias de usuários.' },
+            { id: 'B', text: 'Os testadores se concentram apenas nos aspectos funcionais.' },
+            { id: 'C', text: 'Os testadores participam da identificação e avaliação de riscos das histórias de usuários.' },
+            { id: 'D', text: 'Os testadores garantem o lançamento de alta qualidade por meio de um projeto de teste antecipado.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>C) CORRETO.</strong> De acordo com o syllabus, uma das maneiras-chave pelas quais os testadores agregam valor no planejamento ágil é participando da identificação, análise e avaliação de riscos associados às histórias de usuários, ajudando a equipe a priorizar o trabalho e o esforço de teste."
+        }
+    },
+    {
+        id: 31,
+        question: "Quais das DUAS opções a seguir são critérios de saída para testar um sistema?",
+        options: [
+            { id: 'A', text: 'Prontidão do ambiente de teste.' },
+            { id: 'B', text: 'Capacidade do testador de fazer login no objeto de teste.' },
+            { id: 'C', text: 'A densidade de defeitos estimada é atingida.' },
+            { id: 'D', text: 'Os requisitos são traduzidos para o formato dado/quando/então.' },
+            { id: 'E', text: 'Os testes de regressão são automatizados.' }
+        ],
+        type: 'checkbox',
+        correctAnswer: ['C', 'E'],
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> A prontidão do ambiente é um critério de <strong>entrada</strong>.<br><strong>B) INCORRETO.</strong> Esta é uma condição de teste, não um critério de saída.<br><strong>C) CORRETO.</strong> Atingir uma meta de densidade de defeitos (por exemplo, abaixo de um limite) é um critério de saída comum.<br><strong>D) INCORRETO.</strong> A tradução de requisitos faz parte dos critérios de prontidão (entrada).<br><strong>E) CORRETO.</strong> Concluir a automação de testes de regressão (e/ou ter um percentual mínimo passando) pode ser um critério de conclusão (saída) definido no plano de teste."
+        }
+    },
+    {
+        id: 32,
+        question: "Sua equipe usa a estimativa de três pontos com as seguintes estimativas: Otimista = 2 horas, Mais Provável = 11 horas, Pessimista = 14 horas. Qual é a estimativa final?",
+        options: [
+            { id: 'A', text: '9 horas' },
+            { id: 'B', text: '14 horas' },
+            { id: 'C', text: '11 horas' },
+            { id: 'D', text: '10 horas' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>D) CORRETO.</strong> A fórmula da estimativa de três pontos (PERT) é:<br>E = (Otimista + 4 × Mais Provável + Pessimista) / 6<br>E = (2 + 4 × 11 + 14) / 6<br>E = (2 + 44 + 14) / 6<br>E = 60 / 6 = 10 horas."
+        }
+    },
+    {
+        id: 33,
+        question: "Considere a lista de casos de teste com prioridades (1=maior) e dependências lógicas.<br><table><tr><th>ID</th><th>Condição</th><th>Prior.</th><th>Depende de</th></tr><tr><td>TC001</td><td>Selecionar tipo de alimento</td><td>3</td><td>-</td></tr><tr><td>TC002</td><td>Selecionar restaurante</td><td>2</td><td>TC001</td></tr><tr><td>TC003</td><td>Obter direção</td><td>1</td><td>TC002</td></tr><tr><td>TC004</td><td>Ligar para restaurante</td><td>2</td><td>TC002</td></tr><tr><td>TC005</td><td>Fazer reserva</td><td>3</td><td>TC002</td></tr></table>Qual caso de teste deve ser o TERCEIRO a ser executado?",
+        options: [
+            { id: 'A', text: 'TC 003' },
+            { id: 'B', text: 'TC 005' },
+            { id: 'C', text: 'TC 002' },
+            { id: 'D', text: 'TC 001' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong> A ordem é determinada primeiro por dependência lógica e depois por prioridade.<br>1º) TC 001 (sem dependência).<br>2º) TC 002 (depende do TC 001).<br>Agora que TC 002 foi executado, os outros três (TC003, TC004, TC005) podem ser executados. A prioridade decide: TC 003 tem prioridade 1 (a mais alta), então ele é o próximo.<br>A ordem de execução é: TC001, TC002, <strong>TC003</strong>, TC004, TC005."
+        }
+    },
+    {
+        id: 34,
+        question: "Mapeie as categorias de teste (1-4) para os quadrantes de teste ágil (A-D):<br> (1) Teste de usabilidade<br> (2) Teste de componentes<br> (3) Teste funcional<br> (4) Teste de confiabilidade<br>(A) Q1: tecnológico, apoia desenv.<br>(B) Q2: de negócio, apoia desenv.<br>(C) Q3: de negócio, crítica do produto<br>(D) Q4: tecnológico, crítica do produto",
+        options: [
+            { id: 'A', text: '1C, 2A, 3B, 4D' },
+            { id: 'B', text: '1D, 2A, 3C, 4B' },
+            { id: 'C', text: '1C, 2B, 3D, 4A' },
+            { id: 'D', text: '1D, 2B, 3C, 4A' }
+        ],
+        correctAnswer: 'A',
+        explanations: {
+            "Geral": "<strong>A) CORRETO.</strong><br>- (1) Teste de Usabilidade: Focado no negócio, crítica do produto -> Q3 (C).<br>- (2) Teste de Componentes: Tecnológico, apoia o desenvolvimento -> Q1 (A).<br>- (3) Teste Funcional (histórias): Focado no negócio, apoia o desenvolvimento -> Q2 (B).<br>- (4) Teste de Confiabilidade: Tecnológico, crítica do produto -> Q4 (D)."
+        }
+    },
+    {
+        id: 35,
+        question: "Análise de Risco: <b>Risco:</b> Tempo de resposta muito longo. <b>Probabilidade:</b> Média, <b>Impacto:</b> Alto. <b>Resposta:</b> Realizar testes de performance e testes de aceite. Que medida está sendo proposta?",
+        options: [
+            { id: 'A', text: 'Aceite de riscos.' },
+            { id: 'B', text: 'Plano de contingência.' },
+            { id: 'C', text: 'Mitigação de riscos.' },
+            { id: 'D', text: 'Transferência de risco.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>C) CORRETO.</strong> As ações propostas (realizar testes de performance e de aceite) são atividades destinadas a reduzir a probabilidade ou o impacto do risco se manifestar como uma falha. Isso é a definição de mitigação de risco."
+        }
+    },
+    {
+        id: 36,
+        question: "Qual ferramenta ágil mostra a quantidade de trabalho concluída e a restante para uma iteração?",
+        options: [
+            { id: 'A', text: 'Critérios de aceite.' },
+            { id: 'B', text: 'Relatório de defeitos.' },
+            { id: 'C', text: 'Relatório de conclusão do teste.' },
+            { id: 'D', text: 'Gráfico de Burndown.' }
+        ],
+        correctAnswer: 'D',
+        explanations: {
+            "Geral": "<strong>D) CORRETO.</strong> O gráfico Burndown é uma representação visual do trabalho restante versus o tempo. É atualizado diariamente para mostrar o progresso e ajudar a prever se o trabalho da iteração será concluído a tempo."
+        }
+    },
+    {
+        id: 37,
+        question: "Você precisa atualizar um script de teste automatizado para um novo requisito. Qual processo indica que você deve criar uma nova versão do script no repositório?",
+        options: [
+            { id: 'A', text: 'Gerenciamento de Rastreabilidade.' },
+            { id: 'B', text: 'Teste de Manutenção.' },
+            { id: 'C', text: 'Gerenciamento de Configuração.' },
+            { id: 'D', text: 'Engenharia de Requisitos.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>C) CORRETO.</strong> O Gerenciamento de Configuração (GC) é o processo que envolve identificar, controlar e versionar todos os itens de um projeto, incluindo artefatos de teste como scripts. Ao atualizar um script, o processo de GC dita que uma nova versão seja criada e registrada."
+        }
+    },
+    {
+        id: 38,
+        question: "Você recebeu um relatório de defeito que os desenvolvedores não conseguem reproduzir. O relatório diz: <i>'App desliga ao inserir `$ä` no campo Nome. Usei várias contas. Erro fatal no log (anexo). O app deveria aceitar a entrada. Corrigir com prioridade alta.'</i> Que informações essenciais estão FALTANDO?",
+        options: [
+            { id: 'A', text: 'Resultado esperado e resultado real.' },
+            { id: 'B', text: 'Referências e status do defeito.' },
+            { id: 'C', text: 'Ambiente de teste e item de teste.' },
+            { id: 'D', text: 'Prioridade e gravidade.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>C) CORRETO.</strong> O relatório não especifica o <strong>item de teste</strong> (versão do aplicativo) nem o <strong>ambiente de teste</strong> (versão do SO, navegador, hardware, etc.). Sem essas informações cruciais, é muito difícil para os desenvolvedores configurarem um ambiente idêntico para tentar reproduzir o defeito.<br><strong>A, B e D estão presentes:</strong> Resultado esperado/real, referências (TC, REQ) e prioridade estão no relatório."
+        }
+    },
+    {
+        id: 39,
+        question: "Qual atividade de teste é suportada por uma ferramenta de preparação de dados?",
+        options: [
+            { id: 'A', text: 'Monitoramento e controle de testes.' },
+            { id: 'B', text: 'Análise e projeto de testes.' },
+            { id: 'C', text: 'Implementação e execução de testes.' },
+            { id: 'D', text: 'Conclusão do teste.' }
+        ],
+        correctAnswer: 'C',
+        explanations: {
+            "Geral": "<strong>C) CORRETO.</strong> A fase de <strong>Implementação</strong> do teste inclui a criação e aquisição de todos os materiais necessários, como scripts e, crucialmente, <strong>dados de teste</strong>. Ferramentas de preparação de dados são usadas nesta fase para criar, editar ou gerar os dados que serão usados durante a fase de <strong>Execução</strong>."
+        }
+    },
+    {
+        id: 40,
+        question: "Qual item identifica corretamente um risco potencial de realizar a automação de testes?",
+        options: [
+            { id: 'A', text: 'Pode introduzir regressões desconhecidas na produção.' },
+            { id: 'B', text: 'Esforços suficientes para manter o material de teste podem não ser alocados adequadamente.' },
+            { id: 'C', text: 'As ferramentas e o material de teste podem não ser suficientemente confiáveis.' },
+            { id: 'D', text: 'Pode reduzir o tempo alocado para testes manuais.' }
+        ],
+        correctAnswer: 'B',
+        explanations: {
+            "Geral": "<strong>A) INCORRETO.</strong> Automação visa <strong>prevenir</strong> regressões, não introduzi-las.<br><strong>B) CORRETO.</strong> A alocação inadequada (ou subestimada) de esforço para manter os scripts e a suíte de testes automatizados é um dos riscos mais comuns e significativos de um projeto de automação.<br><strong>C) INCORRETO.</strong> Embora seja um risco, B é um risco de processo mais amplo e crítico.<br><strong>D) INCORRETO.</strong> Reduzir o tempo de testes manuais é um <strong>benefício</strong> da automação, não um risco."
+        }
+    }
+    ];
+
+    const examContainer = document.getElementById('exam-container');
+    if (!examContainer) {
+        console.error("Elemento 'exam-container' não encontrado!");
+        return;
+    }
+
+    examData.forEach((q) => {
+        const questionElement = document.createElement('div');
+        questionElement.className = 'question-container';
+        questionElement.id = `q-${q.id}`;
+
+        const inputType = (q.type === 'checkbox') ? 'checkbox' : 'radio';
+        let optionsHtml = '';
+        q.options.forEach(opt => {
+            optionsHtml += `
+                <label class="option">
+                    <input type="${inputType}" name="q${q.id}" value="${opt.id}">
+                    <span>${opt.id}) ${opt.text}</span>
+                </label>
+            `;
+        });
+        
+        const questionTextHtml = `<div class="question-text">${q.question}</div>`;
+
+        questionElement.innerHTML = `
+            <p class="question-number">Questão ${q.id}</p>
+            ${questionTextHtml}
+            <form class="options-form">
+                ${optionsHtml}
+                <button type="button" class="submit-btn">Corrigir</button>
+            </form>
+            <div class="feedback"></div>
+        `;
+        examContainer.appendChild(questionElement);
+    });
+
+    examContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('submit-btn')) {
+            const btn = event.target;
+            const form = btn.closest('form');
+            const questionContainer = btn.closest('.question-container');
+            const feedbackElement = questionContainer.querySelector('.feedback');
+            const questionId = parseInt(questionContainer.id.split('-')[1]);
+            const questionData = examData.find(q => q.id === questionId);
+
+            const selectedInputs = form.querySelectorAll('input:checked');
+            if (selectedInputs.length === 0) {
+                alert('Por favor, selecione uma resposta.');
+                return;
+            }
+
+            const selectedAnswers = Array.from(selectedInputs).map(input => input.value);
+            
+            let isCorrect = false;
+            const correctAnswers = Array.isArray(questionData.correctAnswer) ? questionData.correctAnswer.sort() : [questionData.correctAnswer];
+            
+            if (questionData.type === 'checkbox') {
+                 const sortedSelectedAnswers = [...selectedAnswers].sort();
+                 isCorrect = JSON.stringify(sortedSelectedAnswers) === JSON.stringify(correctAnswers);
+            } else {
+                 isCorrect = selectedAnswers.length === 1 && selectedAnswers[0] === correctAnswers[0];
+            }
+            
+            let feedbackHtml = `<p class="feedback-title">${isCorrect ? 'Resposta Correta!' : 'Resposta Incorreta.'}</p><h4>Justificativa Detalhada:</h4>`;
+            
+            if (questionData.explanations['Geral']) {
+                 feedbackHtml += `<p>${questionData.explanations['Geral']}</p>`;
+            }
+
+            feedbackElement.innerHTML = feedbackHtml;
+            feedbackElement.classList.remove('correct', 'incorrect');
+            feedbackElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+            feedbackElement.style.display = 'block';
+
+            // Disable form after submission
+            btn.disabled = true;
+            form.querySelectorAll('input').forEach(input => input.disabled = true);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
